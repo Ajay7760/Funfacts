@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Rainforest Facts</title>
+  
+  <!-- Bootstrap CSS (CDN) -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+  
+  <style>
+    /* Additional custom styling */
+    .fact-container {
+      transition: background-color 0.5s ease, color 0.5s ease;
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+    .keyword {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark d-flex flex-column min-vh-100">
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+      <span class="navbar-brand">Amazon Rainforest Facts</span>
+    </div>
+  </nav>
+
+  <main class="container my-4 flex-fill d-flex flex-column justify-content-center align-items-center">
+    
+    <h1 class="text-center">Discover the Amazon</h1>
+    <p class="text-center">
+      Click the button below to show a fun fact about the mighty Amazon Rainforest!
+    </p>
+    
+    <!-- Fact Container -->
+    <div id="factContainer" class="fact-container bg-white text-dark">
+      <!-- The fun fact text will appear here -->
+      <p class="lead mb-0" id="funFact"></p>
+    </div>
+    
+    <!-- Generate Button -->
+    <button 
+      id="generateFactBtn" 
+      class="btn btn-primary btn-lg mt-4"
+      onclick="showRandomFact()"
+    >
+      Generate Fun Fact
+    </button>
+    
+  </main>
+
+  <footer class="bg-success text-white text-center py-2">
+    © 2025 YourName | <a href="https://github.com/YourName/YourRepo" class="text-white">GitHub Repo</a>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper (CDN) -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+  <script>
+    // Example fun facts JSON (embedded directly for demo). 
+    // You could also fetch this from a separate .json file if preferred.
+    const amazonFacts = {
+      "amazonRainforestFunFacts": [
+        "Covering approximately 5.5 million square kilometers, the Amazon Rainforest is so large that it spans nine countries, including Brazil and Peru.",
+        "An estimated 20% of the world’s oxygen is produced by the Amazon Rainforest, earning it the nickname 'the lungs of the Earth.'",
+        "Some of the thickest parts of the canopy can delay rainfall from hitting the ground for up to 10 minutes.",
+        "The Amazon River flows for roughly 6,400 kilometers (4,000 miles) and discharges more water than the next seven largest rivers combined.",
+        "In the rainforest’s diverse ecosystem, bullet ants are notorious for having one of the most painful stings in the insect world.",
+        "More than 2.5 million insect species call the Amazon home, alongside around 430 mammal species and 1,300 bird species.",
+        "Pink river dolphins (also known as botos) not only live in the Amazon’s freshwater but can change color shades throughout their lives.",
+        "The rainforest acts as a massive carbon sink, helping regulate the global climate by storing billions of tons of carbon.",
+        "Several isolated indigenous tribes reside in the depths of the forest, preserving traditions that have survived for thousands of years.",
+        "Each year, scientists continue to discover dozens of unknown plant and animal species in the Amazon, underscoring its immense biodiversity."
+      ]
+    };
+
+    /**
+     * Dynamically updates the background color based on certain keywords
+     * in the displayed fact.
+     */
+    function updateColorScheme(fact) {
+      const container = document.getElementById('factContainer');
+      const body = document.body;
+      const lowerFact = fact.toLowerCase();
+
+      // Simple example with a few keyword checks:
+      if (lowerFact.includes("oxygen")) {
+        container.style.backgroundColor = "#d1e7dd"; // pale green
+        container.style.color = "#0f5132";
+        body.style.backgroundColor = "#f0fff4";
+      } else if (lowerFact.includes("dolphin")) {
+        container.style.backgroundColor = "#FEE2F1"; // pale pink
+        container.style.color = "#821f56";
+        body.style.backgroundColor = "#FFF5FA";
+      } else if (lowerFact.includes("river")) {
+        container.style.backgroundColor = "#dbeafe"; // pale blue
+        container.style.color = "#1e3a8a";
+        body.style.backgroundColor = "#f0f9ff";
+      } else if (lowerFact.includes("climate")) {
+        container.style.backgroundColor = "#fef9c3"; // pale yellow
+        container.style.color = "#92400e";
+        body.style.backgroundColor = "#fffbeb";
+      } else {
+        // Default bootstrap style if no specific keyword is found
+        container.style.backgroundColor = "#ffffff";
+        container.style.color = "#000000";
+        body.style.backgroundColor = "#f8f9fa";
+      }
+    }
+
+    function showRandomFact() {
+      const array = amazonFacts.amazonRainforestFunFacts;
+      const randomIndex = Math.floor(Math.random() * array.length);
+      const selectedFact = array[randomIndex];
+      document.getElementById("funFact").textContent = selectedFact;
+      
+      // Update the color scheme based on the currently displayed fact
+      updateColorScheme(selectedFact);
+    }
+  </script>
+</body>
+</html>
